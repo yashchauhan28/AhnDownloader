@@ -289,7 +289,7 @@ class AhnDownloader:
 
 
     def f_connect(self):
-        data = self.f_getrecord(self.base_folder + "\config\wfs.txt",self.dockwidget.combo_wfs.currentIndex())
+        data = self.f_getrecord(self.base_folder + r"\config\wfs.txt",self.dockwidget.combo_wfs.currentIndex())
         params = {}
         params.update({'request': data[2]})
         params.update({'typename': data[3]})
@@ -314,7 +314,7 @@ class AhnDownloader:
         self.popup.show()
 
     def f_save(self):
-        valid, rec=self.f_saverecord(self.base_folder+"\config\wfs.txt",self.popup)
+        valid, rec=self.f_saverecord(self.base_folder + r"\config\wfs.txt",self.popup)
         if valid == True:
             self.popup.close()
             self.f_reset_color(self.popup)
@@ -331,7 +331,7 @@ class AhnDownloader:
             return
 
         self.f_clearpopup()
-        filename = self.base_folder+"\config\wfs.txt"
+        filename = self.base_folder + r"\config\wfs.txt"
         file = open(filename, 'r')
         var = []
         for line in file:
@@ -576,7 +576,7 @@ class AhnDownloader:
     def f_update_urls(self):
         # schrijft alle aanpassingen in de combo naar configuratiefile
 
-        fname = self.base_folder + "\config\urls.txt"
+        fname = self.base_folder + r"\config\urls.txt"
         if os.path.isfile(fname):
             # QMessageBox.information(None, "fname",fname)
             os.remove(fname)  # remove the current file, otherwise create just a new one.
@@ -602,7 +602,7 @@ class AhnDownloader:
         if reply==QMessageBox.No:
             return
 
-        fname = self.base_folder + "\config\urls.txt"
+        fname = self.base_folder + r"\config\urls.txt"
         if os.path.isfile(fname):
             os.remove(fname)  # remove the current file, otherwise create just a new one.
         f = open(fname, 'w')
@@ -619,13 +619,13 @@ class AhnDownloader:
         self.url_list = []
         self.dockwidget.comboBox.clear()
 
-        with open(self.base_folder + "\config\urls.txt") as f:
+        with open(self.base_folder + r"\config\urls.txt") as f:
             for line in f:  # create a list of lists
                 self.url_list.append(line.rstrip())
 
         self.dockwidget.comboBox.addItems(self.url_list)
 
-        file = open(self.base_folder + "\config\wfs.txt", "r")
+        file = open(self.base_folder + r"\config\wfs.txt", "r")
         var = []
         for line in file:
             var.append(line.strip().split(","))
@@ -671,7 +671,7 @@ class AhnDownloader:
         # vervolgens wordt de popup gevuld met deze data
         recno=self.dockwidget.combo_wfs.currentIndex()
         self.popup.recno=recno
-        data = self.f_getrecord(self.base_folder + "\config\wfs.txt",recno)
+        data = self.f_getrecord(self.base_folder + r"\config\wfs.txt",recno)
         self.f_fillpopup(self.popup,data,recno)
         self.popup.show()
 
